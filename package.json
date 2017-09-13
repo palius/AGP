@@ -2,10 +2,12 @@
   "name": "apg",
   "version": "1.0.0",
   "description": "Alius - PlayGround",
-  "main": "build/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "http-server ."
   },
   "author": "Alius",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.10.0"
+  }
 }
