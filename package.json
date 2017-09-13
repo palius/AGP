@@ -2,9 +2,9 @@
   "name": "apg",
   "version": "1.0.0",
   "description": "Alius - PlayGround",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "node index.js"
+    "start": "node index.js"
   },
   "author": "Alius",
   "license": "ISC"
