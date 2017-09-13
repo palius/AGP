@@ -1,0 +1,6 @@
+{
+    "id": "app",
+    "env": {
+        "WEDEPLOY_WEB_PATH": "demo"
+    }
+}
