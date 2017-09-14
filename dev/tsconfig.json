@@ -12,5 +12,8 @@
             "metal-jsx": ["node_modules/metal-jsx/lib/all/jsx"],
             "metal-state": ["node_modules/metal-state/lib/all/state"]
         }
-    }
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }

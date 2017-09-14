@@ -1,10 +1,12 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
 	entry: './src/index.ts',
 	module: {
 		rules: [{
 			test: /\.tsx?$/,
+			exclude: [/(node_modules)/],
 			loader: "babel-loader!ts-loader"
 		}, {
 			test: /\.jsx$/,
@@ -19,6 +21,7 @@ module.exports = {
 			}
 		}, {
 			test: /\.scss$/,
+			exclude: [/(node_modules)/],
 			use: [{
 				loader: "style-loader"
 			}, {
@@ -30,9 +33,11 @@ module.exports = {
 	},
 	devtool: "source-map",
 	resolve: {
-        extensions: [".ts", ".tsx"]
+		extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
 	output: {
+		library: 'metal',
+		libraryTarget: 'this',
 		filename: '../dist/index.js'
 	},
 	plugins: [

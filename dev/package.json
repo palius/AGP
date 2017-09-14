@@ -1,7 +1,7 @@
 {
   "name": "agp",
-  "version": "0.0.0",
-  "description": "TreeView component for MetalJS.",
+  "version": "1.0.0",
+  "description": "Alius - PlayGround",
   "license": "BSD",
   "repository": "palius/agp",
   "engines": {
@@ -20,7 +20,7 @@
     "compile": "babel --presets metal -d lib/ src/",
     "postinstall": "npm run build",
     "prepublish": "npm run compile",
-    "start": "http-server . -p 4000",
+    "start": "http-server ../ -p 4000",
     "test": "karma start",
     "watch": "webpack --watch"
   },
