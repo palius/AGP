@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "target": "es6",
+        "jsx": "preserve",
+        "baseUrl": ".",
+        "allowJs": true,
+        "paths": {
+            "metal-ajax": ["node_modules/metal-ajax/lib/Ajax.js"],
+            "metal-dom": ["node_modules/metal-dom/lib/all/dom"],
+            "metal-events": ["node_modules/metal-events/lib/events"],
+            "metal-jsx": ["node_modules/metal-jsx/lib/all/jsx"],
+            "metal-state": ["node_modules/metal-state/lib/all/state"]
+        }
+    }
+}
