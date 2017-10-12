@@ -3266,18 +3266,9 @@ exports.default = jsxRenderer_;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _agp = __webpack_require__(28);
-
-Object.defineProperty(exports, "AGP", {
-  enumerable: true,
-  get: function get() {
-    return _agp.AGP;
-  }
-});
+Object.defineProperty(exports, "__esModule", { value: true });
+var apg_1 = __webpack_require__(28);
+exports.APG = apg_1.APG;
 
 /***/ }),
 /* 28 */
@@ -3286,53 +3277,46 @@ Object.defineProperty(exports, "AGP", {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.AGP = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _metalJsx = __webpack_require__(29);
-
-var _metalJsx2 = _interopRequireDefault(_metalJsx);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var AGP = function (_JSXComponent) {
-    _inherits(AGP, _JSXComponent);
-
-    function AGP() {
-        _classCallCheck(this, AGP);
-
-        return _possibleConstructorReturn(this, (AGP.__proto__ || Object.getPrototypeOf(AGP)).apply(this, arguments));
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var metal_jsx_1 = __webpack_require__(29);
+var APG = /** @class */function (_super) {
+    __extends(APG, _super);
+    function APG() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-
-    _createClass(AGP, [{
-        key: "created",
-        value: function created() {
-            console.log("Element created.");
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            IncrementalDOM.elementOpen("div");
-            IncrementalDOM.text("AGP");
-            return IncrementalDOM.elementClose("div");
-        }
-    }]);
-
-    return AGP;
-}(_metalJsx2.default);
-
-exports.AGP = AGP;
-exports.default = AGP;
+    APG.prototype.created = function () {
+        console.log("Element created.");
+    };
+    APG.prototype.render = function () {
+        IncrementalDOM.elementOpen("div");
+        IncrementalDOM.elementOpen("div");
+        IncrementalDOM.text("APG");
+        IncrementalDOM.elementClose("div");
+        IncrementalDOM.elementOpen("p");
+        IncrementalDOM.text("asd");
+        IncrementalDOM.elementClose("p");
+        return IncrementalDOM.elementClose("div");
+    };
+    return APG;
+}(metal_jsx_1.default);
+exports.APG = APG;
+exports.default = APG;
 
 /***/ }),
 /* 29 */
