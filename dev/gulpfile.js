@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gulpCopy = require('gulp-copy');
 var webpack = require('webpack-stream');
 
 gulp.task('dist', function() {
@@ -8,5 +9,6 @@ gulp.task('dist', function() {
 gulp.task('build', ['dist'], function() {
     return gulp
         .src('../dist/*')
+        .pipe(gulpCopy('../demo'))
         .pipe(gulp.dest('../demo'));
 });
