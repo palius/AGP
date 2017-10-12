@@ -38,7 +38,7 @@ module.exports = {
 	output: {
 		library: 'metal',
 		libraryTarget: 'this',
-		filename: '../dist/index.js'
+		filename: '../demo/index.js'
 	},
 	plugins: [
 		new webpack.optimize.ModuleConcatenationPlugin()

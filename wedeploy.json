@@ -1,7 +1,0 @@
-{
-    "id": "app",
-    "image": "wedeploy/hosting:1.0.0",
-    "env": {
-        "WEDEPLOY_WEB_PATH": "demo"
-    }
-}

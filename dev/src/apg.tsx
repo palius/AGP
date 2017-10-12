@@ -8,7 +8,6 @@ class APG extends JSXComponent {
         return (
             <div>
                 <div>APG</div>
-                <p>asd</p>
             </div>
         );
     }

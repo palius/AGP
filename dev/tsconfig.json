@@ -39,10 +39,15 @@
       "metal-dom": ["node_modules/metal-dom/lib/all/dom"],
       "metal-events": ["node_modules/metal-events/lib/events"],
       "metal-jsx": ["node_modules/metal-jsx/lib/all/jsx"],
-      "metal-state": ["node_modules/metal-state/lib/all/state"]
-    }
+      "metal-state": ["node_modules/metal-state/lib/all/state"],
+      "wedeploy": ["node_modules/wedeploy/build/node/api-min"]
+    },
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
-    // "typeRoots": [],                       /* List of folders to include type definitions from. */
+    "typeRoots": [                            /* List of folders to include type definitions from. */
+      "types",
+      "types/wedeploy",
+      "node_modules/@types"
+    ]
     // "types": [],                           /* Type declaration files to be included in compilation. */
     // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
