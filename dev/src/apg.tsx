@@ -1,13 +1,16 @@
-import JSXComponent from 'metal-jsx';
+import JSXComponent from "metal-jsx";
 
 class APG extends JSXComponent {
     created() {
-        console.log("Element created.");
+        
     }
+    
     render() {
         return (
-            <div>
-                <div>APG</div>
+            <div class="apg">
+                <div class="apg-header">APG</div>
+                <div class="apg-body">BODY</div>
+                <div class="apg-footer">FOOTER</div>
             </div>
         );
     }

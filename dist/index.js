@@ -3300,13 +3300,17 @@ var APG = /** @class */function (_super) {
     function APG() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    APG.prototype.created = function () {
-        console.log("Element created.");
-    };
+    APG.prototype.created = function () {};
     APG.prototype.render = function () {
-        IncrementalDOM.elementOpen("div");
-        IncrementalDOM.elementOpen("div");
+        IncrementalDOM.elementOpen("div", null, null, "class", "apg");
+        IncrementalDOM.elementOpen("div", null, null, "class", "apg-header");
         IncrementalDOM.text("APG");
+        IncrementalDOM.elementClose("div");
+        IncrementalDOM.elementOpen("div", null, null, "class", "apg-body");
+        IncrementalDOM.text("BODY");
+        IncrementalDOM.elementClose("div");
+        IncrementalDOM.elementOpen("div", null, null, "class", "apg-footer");
+        IncrementalDOM.text("FOOTER");
         IncrementalDOM.elementClose("div");
         return IncrementalDOM.elementClose("div");
     };

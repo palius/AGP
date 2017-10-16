@@ -1,58 +1,15 @@
-'use strict';
-
-const extractTextPlugin = require("extract-text-webpack-plugin");
-const karmaWebpack = require('karma-webpack');
-const sourceMapLoader = require("karma-sourcemap-loader");
-const metalKarmaConfig = require("metal-karma-config");
+const webpackConfig = require("./webpack.config");
 
 module.exports = function (config) {
-	metalKarmaConfig(config);
-	config.plugins.push(karmaWebpack, sourceMapLoader);
-  config.set({
-    frameworks: ['mocha', 'chai', 'sinon'],
-
-    files: [
-			'__tests__/**/*.js'
-		],
-
-		webpack: {
-			module: {
-				rules: [
-					{
-						test: /\.js$/,
-						exclude: /(node_modules)/,
-						use: {
-							loader: 'babel-loader',
-							options: {
-								compact: false,
-								presets: ['babel-preset-es2015']
-							}
-						}
-					},
-					{
-						test: /\.scss$/,
-						use: extractTextPlugin.extract({
-							fallback: "style-loader",
-							use: "css-loader"
-						})
-					}
-				]
-			},
-			plugins: [
-				new extractTextPlugin("styles.css"),
-			]
-		},
-
-		webpackMiddleware: {
-      noInfo: true
-    },
-
-    preprocessors: {
-      '__tests__/**/*.js': ['webpack', 'sourcemap']
-		},
-
-		singleRun: true,
-
-    browsers: ['Chrome']
-  });
+	config.set({
+		autoWatch: true,
+		browsers: ["PhantomJS"],
+		concurrency: Infinity,
+		files: [ "__tests__/**/*.spec.ts" ],
+		frameworks: ["mocha", "chai", "sinon"],
+		preprocessors: { "__tests__/**/*.ts": ["webpack"] },
+		singleRun: false,
+		webpack: webpackConfig,
+		webpackMiddleware: { noInfo: true }
+	});
 };

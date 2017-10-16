@@ -1,4 +1,4 @@
-declare module 'wedeploy' {
+declare module "wedeploy" {
     type orderDirection = "asc" | "desc";
     type SQLOperator = "=" | "!=" | ">" | ">=" | "<" | "<=" | "~" | "any" | "none";
     type aggregateOperator = "min" | "max" | "sum" | "avg";

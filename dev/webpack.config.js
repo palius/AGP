@@ -1,8 +1,8 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
-	entry: './src/index.ts',
+	entry: "./src/index.ts",
 	module: {
 		rules: [{
 			test: /\.tsx?$/,
@@ -12,11 +12,11 @@ module.exports = {
 			test: /\.jsx$/,
 			exclude: [/(node_modules)/],
 			use: {
-				loader: 'babel-loader',
+				loader: "babel-loader",
 				options: {
 					compact: false,
-					presets: ['babel-preset-es2015'],
-					plugins: ['babel-plugin-transform-node-env-inline']
+					presets: ["babel-preset-es2015"],
+					plugins: ["babel-plugin-transform-node-env-inline"]
 				}
 			}
 		}, {
@@ -36,9 +36,9 @@ module.exports = {
 		extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
 	output: {
-		library: 'metal',
-		libraryTarget: 'this',
-		filename: '../dist/index.js'
+		library: "metal",
+		libraryTarget: "this",
+		filename: "../dist/index.js"
 	},
 	plugins: [
 		new webpack.optimize.ModuleConcatenationPlugin()
