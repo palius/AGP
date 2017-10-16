@@ -1,14 +1,10 @@
 var gulp = require('gulp');
-var gulpCopy = require('gulp-copy');
 var webpack = require('webpack-stream');
 
-gulp.task('dist', function() {
-    return webpack(require('./webpack.config.js'));
-});
-
-gulp.task('build', ['dist'], function() {
+gulp.task('build', function() {
     return gulp
-        .src('../dist/*')
-        .pipe(gulpCopy('../demo'))
-        .pipe(gulp.dest('../demo'));
+        .src("")
+        .pipe(webpack(require('./webpack.config.js')))
+        .pipe(gulp.dest("../dist"))
+        .pipe(gulp.dest("../demo"));
 });

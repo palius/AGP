@@ -4,120 +4,120 @@ declare module 'wedeploy' {
     type aggregateOperator = "min" | "max" | "sum" | "avg";
     type eventName = "changes" | "fail";
 
-    interface WD {
+    interface IWeDeploy {
         data(
-            this: WD,
+            this: IWeDeploy,
             url: string
-        ): WD;
+        ): IWeDeploy;
         
         create(
-            this: WD,
+            this: IWeDeploy,
             endPoint: string,
             data: {} | {}[]
-        ): WD;
+        ): IWeDeploy;
 
         where(
-            this: WD, 
+            this: IWeDeploy, 
             fieldName: string,
             operator: SQLOperator,
             value: any
-        ): WD;
+        ): IWeDeploy;
 
         match(
-            this: WD,
-            fieldName: WD,
+            this: IWeDeploy,
+            fieldName: IWeDeploy,
             value: any
-        ): WD;
+        ): IWeDeploy;
 
         similar(
-            this: WD,
+            this: IWeDeploy,
             fieldName: string,
             value: any
-        ): WD;
+        ): IWeDeploy;
 
         hightlight(
-            this: WD,
+            this: IWeDeploy,
             fieldName: string
-        ): WD;
+        ): IWeDeploy;
 
         search(
-            this: WD,
+            this: IWeDeploy,
             endPoint: string
-        ): WD;
+        ): IWeDeploy;
 
         lt(
-            this: WD,
-            fieldName: WD,
+            this: IWeDeploy,
+            fieldName: IWeDeploy,
             value: any
-        ): WD;
+        ): IWeDeploy;
 
         aggregate(
-            this: WD,
-            name: WD,
-            fieldName: WD,
+            this: IWeDeploy,
+            name: IWeDeploy,
+            fieldName: IWeDeploy,
             value: any
-        ): WD;
+        ): IWeDeploy;
         
         or(
-            this: WD, 
+            this: IWeDeploy, 
             fieldName: string,
             operator: SQLOperator,
             value: any
-        ): WD;
+        ): IWeDeploy;
         
         orderBy(
-            this: WD,
+            this: IWeDeploy,
             fieldName: string,
             direction: orderDirection
-        ): WD;
+        ): IWeDeploy;
 
         limit(
-            this: WD,
+            this: IWeDeploy,
             limit: number
-        ): WD;
+        ): IWeDeploy;
 
         offset(
-            this: WD,
+            this: IWeDeploy,
             offset: number
-        ) : WD;
+        ) : IWeDeploy;
         
         get(
-            this: WD,
+            this: IWeDeploy,
             endPoint: string
-        ): WD;
+        ): IWeDeploy;
         
         watch(
-            this: WD,
+            this: IWeDeploy,
             endPoint: string
-        ): WD;
+        ): IWeDeploy;
 
         on(
-            this: WD,
+            this: IWeDeploy,
             eventName: eventName,
             callback: (
                 response: {}
             ) => void
-        ): WD;
+        ): IWeDeploy;
 
         update(
-            this: WD,
+            this: IWeDeploy,
             endPoint: string,
             value: {}
-        ): WD;
+        ): IWeDeploy;
 
         delete(
-            this: WD,
+            this: IWeDeploy,
             endPoint: string
-        ): WD;
+        ): IWeDeploy;
 
         then(
-            this: WD,
+            this: IWeDeploy,
             callback: (
                 reponse: {}
             ) => void
-        ): WD;
+        ): IWeDeploy;
     }
 
-    const WeDeploy: WD;
+    const WeDeploy: IWeDeploy;
     export default WeDeploy;
 }
