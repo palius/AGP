@@ -1,4 +1,4 @@
-this["metal"] =
+this["asd"] =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
