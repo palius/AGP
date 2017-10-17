@@ -5,13 +5,85 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>DEMO</title>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+            crossorigin="anonymous">
+        </script>
     </head>
     
     <body>
+        <textarea id="ts"></textarea>
+        <textarea id="js"></textarea>
+            
+        <script>
+            $(document).ready(
+                () => {
+                    new metal.APG();
+
+                    $(document).on(
+                        "CompilationReady",
+                        () => {
+                            if ($("#ts-alius")) $("#js").val($("#ts-alius")[0].innerText);
+                        }
+                    )
+
+                    $("#ts").blur(
+                        () => {
+                            asdasd("ts");
+                        }
+                    );
+
+                    $("#js").blur(
+                        () => {
+                            //evalTS();
+                            //newScript();
+                            //newWindow();
+                            //newIFrame();
+                        }
+                    );
+                }
+            );
+
+            function evalTS() {
+                eval($("#js").val());
+            }
+
+            function newScript() {
+                $("#js-alius").length && $("#js-alius")[0].remove();
+
+                let script = document.createElement("script");
+                script.id = "js-alius";
+                script.type = "text/javascript";
+                script.textContent = $("#js").val();
+
+                $("body")[0].appendChild(script);
+            }
+
+            function newWindow() {
+                var external = window.open();
+                var script = external.window.document.createElement("script");
+                script.textContent = $("#js").val();
+                external.window.document.body.appendChild(script);                
+            }
+
+            function newIFrame() {
+                $("#iframe-alius").length && $("#iframe-alius")[0].remove();
+                
+                var iframe = document.createElement("iframe");
+                iframe.id = "iframe-alius";
+                $("body")[0].appendChild(iframe);
+
+                var script = document.createElement("script");
+                script.textContent = $("#js").val();
+                iframe.contentDocument.body.appendChild(script);
+            }
+        </script>
+
         <script src="https://cdn.wedeploy.com/api/2.3.1/wedeploy.js"></script>
         <script src="./index.js"></script>
-        <script>
-            new metal.APG();
-        </script>
+
+        <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
+        <script src="./libs/typescript-script/transpiler.js"></script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-this["asd"] =
+this["metal"] =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -3304,13 +3304,11 @@ var APG = /** @class */function (_super) {
     APG.prototype.render = function () {
         IncrementalDOM.elementOpen("div", null, null, "class", "apg");
         IncrementalDOM.elementOpen("div", null, null, "class", "apg-header");
-        IncrementalDOM.text("APG");
         IncrementalDOM.elementClose("div");
         IncrementalDOM.elementOpen("div", null, null, "class", "apg-body");
-        IncrementalDOM.text("BODY");
+        IncrementalDOM.text("asdasdasd");
         IncrementalDOM.elementClose("div");
         IncrementalDOM.elementOpen("div", null, null, "class", "apg-footer");
-        IncrementalDOM.text("FOOTER");
         IncrementalDOM.elementClose("div");
         return IncrementalDOM.elementClose("div");
     };
