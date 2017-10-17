@@ -17,11 +17,10 @@
   ],
   "scripts": {
     "build": "gulp build",
-    "compile": "babel --presets metal -d lib/ src/",
     "postinstall": "npm run build",
-    "prepublish": "npm run compile",
-    "start": "http-server ../ -p 4000",
-    "test": "karma start",
+    "start": "http-server ../docs/ -p 4000",
+    "test": "gulp test",
+    "test-watch": "karma start --auto-watch --no-single-run",
     "watch": "webpack --watch"
   },
   "keywords": [

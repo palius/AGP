@@ -36,7 +36,7 @@ module.exports = {
 		extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
 	output: {
-		library: "metal",
+		library: "asd",
 		libraryTarget: "this",
 		filename: "../dist/index.js"
 	},

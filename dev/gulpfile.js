@@ -1,17 +1,49 @@
 var gulp = require("gulp");
-var webpack = require("webpack-stream");
-var Server = require("karma").Server;
+const karma = require("karma").Server;
+const webpack = require("webpack-stream");
 
-gulp.task("build", function() {
-    return gulp
-        .src("")
-        .pipe(webpack(require("./webpack.config.js")))
-        .pipe(gulp.dest("../dist"))
-        .pipe(gulp.dest("../demo"));
-});
+gulp.task(
+    "build-docs",
+    () => {
+        return gulp
+            .src("")
+            .pipe(webpack(require("./webpack.config.js")))
+            .pipe(gulp.dest("../docs"));
+    }
+);
 
-gulp.task("test", function() {
-    new Server({
-        configFile: __dirname + "/karma.conf.js"
-    }).start();
-});
+gulp.task(
+    "build-dist",
+    () => {
+        return gulp
+            .src("")
+            .pipe(webpack(require("./webpack.config.js")))
+            .pipe(gulp.dest("../dist"));
+    }
+);
+
+gulp.task(
+    "build",
+    ["build-dist", "build-docs"],
+    () => {}
+);
+
+gulp.task(
+    "test",
+    () => {
+        new karma({
+            configFile: __dirname + "/karma.conf.js"
+        }).start();
+    }
+);
+
+gulp.task(
+    "test-watch",
+    () => {
+        new karma({
+            configFile: __dirname + "/karma.conf.js",
+            singleRun: false,
+            autoWatch: true
+        }).start();
+    }
+);
