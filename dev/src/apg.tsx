@@ -8,9 +8,9 @@ class APG extends JSXComponent {
     render() {
         return (
             <div class="apg">
-                <div class="apg-header">APG</div>
-                <div class="apg-body">BODY</div>
-                <div class="apg-footer">FOOTER</div>
+                <div class="apg-header"></div>
+                <div class="apg-body"></div>
+                <div class="apg-footer"></div>
             </div>
         );
     }

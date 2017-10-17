@@ -5,9 +5,12 @@ const webpack = require("webpack-stream");
 gulp.task(
     "build-docs",
     () => {
+        const webpackConfig = require("./webpack.config.js");
+        webpackConfig.output.filename = "../docs/index.js";
+
         return gulp
             .src("")
-            .pipe(webpack(require("./webpack.config.js")))
+            .pipe(webpack(webpackConfig))
             .pipe(gulp.dest("../docs"));
     }
 );
@@ -15,9 +18,11 @@ gulp.task(
 gulp.task(
     "build-dist",
     () => {
+        const webpackConfig = require("./webpack.config.js");
+
         return gulp
             .src("")
-            .pipe(webpack(require("./webpack.config.js")))
+            .pipe(webpack(webpackConfig))
             .pipe(gulp.dest("../dist"));
     }
 );
