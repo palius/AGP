@@ -3306,7 +3306,6 @@ var APG = /** @class */function (_super) {
         IncrementalDOM.elementOpen("div", null, null, "class", "apg-header");
         IncrementalDOM.elementClose("div");
         IncrementalDOM.elementOpen("div", null, null, "class", "apg-body");
-        IncrementalDOM.text("asdasdasd");
         IncrementalDOM.elementClose("div");
         IncrementalDOM.elementOpen("div", null, null, "class", "apg-footer");
         IncrementalDOM.elementClose("div");

@@ -1,6 +1,6 @@
 // BASED on https://github.com/niutech/typescript-compile but using 1.5 transpile function
 
-var asdasd = function(id) {
+var Transpiler = function(id) {
     //Keep track of the number of scripts to be pulled, and fire the compiler
     //after the number of loaded reaches the total
     var scripts = {

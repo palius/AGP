@@ -13,13 +13,49 @@
     </head>
     
     <body>
-        <textarea id="ts"></textarea>
-        <textarea id="js"></textarea>
+        <h1 style="text-align: center;">Alius PlayGround (TypeScript)</h1>
+        <h2 style="text-align: center;">Open your console to find the output of the demo code! ^_^</h2>
+
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center;">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                <textarea id="ts" style="width: 100%; height: 50vh;"></textarea>
+                <button id="tsCompiler">COMPILE</button>
+            </div>
+
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                <textarea id="js" style="width: 100%; height: 50vh;"></textarea>
+                <button id="jsRunner">RUN</button>
+            </div>
+        </div>
+        
             
         <script>
             $(document).ready(
                 () => {
                     new metal.APG();
+
+                    $("#ts").val(
+                        `class a {\n` +
+                        `    aa() {\n` +
+                        `       console.log("aa");\n` +
+                        `    }\n` +
+                        `    \n` +
+                        `    static ab() {\n` +
+                        `        console.log("ab");\n` +
+                        `    }\n` +
+                        `}\n` +
+                        `\n` +
+                        `class b extends a {\n` +
+                        `    ba() {\n` +
+                        `        console.log("ba");\n` +
+                        `    }\n` +
+                        `}\n` +
+                        `\n` +
+                        `const c = new b();\n` +
+                        `c.ba();\n` +
+                        `c.aa();\n` +
+                        `a.ab();`
+                    );
 
                     $(document).on(
                         "CompilationReady",
@@ -28,16 +64,17 @@
                         }
                     )
 
-                    $("#ts").blur(
+                    $("#tsCompiler").click(
                         () => {
-                            asdasd("ts");
+                            if (!Transpiler) throw new Error("Transpiler not found!!");
+                            Transpiler("ts");
                         }
                     );
 
-                    $("#js").blur(
+                    $("#jsRunner").click(
                         () => {
                             //evalTS();
-                            //newScript();
+                            newScript();
                             //newWindow();
                             //newIFrame();
                         }
@@ -81,7 +118,7 @@
         </script>
 
         <script src="https://cdn.wedeploy.com/api/2.3.1/wedeploy.js"></script>
-        <script src="./index.js"></script>
+        <script src="index.js"></script>
 
         <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
         <script src="transpiler.js"></script>

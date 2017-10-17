@@ -1,9 +1,17 @@
-var gulp = require("gulp");
+const del = require("del");
+const gulp = require("gulp");
 const karma = require("karma").Server;
+const runSequence = require("run-sequence");
 const webpack = require("webpack-stream");
 
 gulp.task(
-    "build-docs",
+    "clean:docs",
+    () => del(["../docs/index.js.map", "../docs/index.js"], {force: true})
+);
+
+gulp.task(
+    "build:docs",
+    ["clean:docs"],
     () => {
         const webpackConfig = require("./webpack.config.js");
         webpackConfig.output.filename = "../docs/index.js";
@@ -16,7 +24,13 @@ gulp.task(
 );
 
 gulp.task(
-    "build-dist",
+    "clean:dist",
+    () => del(["../dist/index.js.map", "../dist/index.js"], {force: true})
+);
+
+gulp.task(
+    "build:dist",
+    ["clean:dist"],
     () => {
         const webpackConfig = require("./webpack.config.js");
 
@@ -29,8 +43,9 @@ gulp.task(
 
 gulp.task(
     "build",
-    ["build-dist", "build-docs"],
-    () => {}
+    () => {
+        runSequence("build:dist", "build:docs");
+    }
 );
 
 gulp.task(
@@ -43,7 +58,7 @@ gulp.task(
 );
 
 gulp.task(
-    "test-watch",
+    "test:watch",
     () => {
         new karma({
             configFile: __dirname + "/karma.conf.js",
