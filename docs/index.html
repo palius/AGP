@@ -60,7 +60,12 @@
 
                 <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
                     <input type="radio" name="jsOptions" id="jsWorker" value="jsWorker">
-                    <label for="jsWorker">Pass to worker</label>
+                    <label for="jsWorker">Pass to worker.js</label>
+                </div>
+
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <input type="radio" name="jsOptions" id="jsUWorker" value="jsUWorker">
+                    <label for="jsUWorker">Pass to unique worker</label>
                 </div>
             </div>
 
@@ -146,7 +151,10 @@
                                     newIFrame();
                                     break;
                                 case "jsWorker":
-                                    passJSToWorker();
+                                    passJSToWorkerJS();
+                                    break;
+                                case "jsUWorker":
+                                    passJSToUniqueWorker();
                                     break;
                             };
                         }
@@ -196,8 +204,25 @@
                     "data": $("#ts").val()
                 });
             }
+
+            function passJSToUniqueWorker() {
+                const code = `self.addEventListener(` +
+                    `"message",` +
+                    `e => {` +
+                    $("#js").val() +
+                    `}` +
+                `);`
+
+                const bb = new Blob([code], {
+                    type: "text/javascript"
+                });
+
+                const worker = new Worker(URL.createObjectURL(bb));
+                worker.addEventListener("message", e => console.log((e.data).toString()));
+                worker.postMessage("");
+            }
             
-            function passJSToWorker() {
+            function passJSToWorkerJS() {
                 const worker = createNewWorker();
 
                 worker.postMessage({
