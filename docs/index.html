@@ -16,15 +16,64 @@
         <h1 style="text-align: center;">Alius PlayGround (TypeScript)</h1>
         <h2 style="text-align: center;">Open your console to find the output of the demo code! ^_^</h2>
 
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center;">
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center; width: 100%;">
-                <textarea id="ts" style="width: 100%; height: 50vh;"></textarea>
-                <button id="tsCompiler">COMPILE</button>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <div>TS options:</div>
+                </div>
+
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <input type="radio" name="tsOptions" id="tsWindow" value="tsWindow" />
+                    <label for="tsWindow">Transpile in window context</label>
+                </div>
+
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <input type="radio" name="tsOptions" id="tsWorker" value="tsWorker" />
+                    <label for="tsWorker">Transpile in worker context</label>
+                </div>
+            </div>
+                
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <div>JS options:</div>
+                </div>
+                
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <input type="radio" name="jsOptions" id="jsEval" value="jsEval">
+                    <label for="jsEval">Use eval()</label>
+                </div>
+
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <input type="radio" name="jsOptions" id="jsScript" value="jsScript">
+                    <label for="jsScript">Use &lt;script&gt;</label>
+                </div>
+
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <input type="radio" name="jsOptions" id="jsWindow" value="jsWindow">
+                    <label for="jsWindow">Use a new window</label>
+                </div>
+
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <input type="radio" name="jsOptions" id="jsIFrame" value="jsIFrame">
+                    <label for="jsIFrame">Use an &lt;IFrame&gt;</label>
+                </div>
+
+                <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <input type="radio" name="jsOptions" id="jsWorker" value="jsWorker">
+                    <label for="jsWorker">Pass to worker</label>
+                </div>
             </div>
 
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center; width: 100%;">
-                <textarea id="js" style="width: 100%; height: 50vh;"></textarea>
-                <button id="jsRunner">RUN</button>
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <textarea id="ts" style="width: 100%; height: 50vh;"></textarea>
+                    <button id="tsCompiler">COMPILE</button>
+                </div>
+    
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center; width: 100%;">
+                    <textarea id="js" style="width: 100%; height: 50vh;"></textarea>
+                    <button id="jsRunner">RUN</button>
+                </div>
             </div>
         </div>
         
@@ -33,6 +82,9 @@
             $(document).ready(
                 () => {
                     new metal.APG();
+
+                    $("#tsWorker").attr("checked", "true");
+                    $("#jsWorker").attr("checked", "true");
 
                     $("#ts").val(
                         `class a {\n` +
@@ -66,17 +118,37 @@
 
                     $("#tsCompiler").click(
                         () => {
-                            if (!Transpiler) throw new Error("Transpiler not found!!");
-                            Transpiler("ts");
+                            switch($("[name=tsOptions]:checked").val()) {
+                                case "tsWindow": 
+                                    if (!Transpiler) throw new Error("Transpiler not found!!");
+                                    Transpiler("ts");
+                                    break;
+                                case "tsWorker":
+                                    passTSToWorker();
+                                    break;
+                            };
                         }
                     );
 
                     $("#jsRunner").click(
                         () => {
-                            //evalTS();
-                            newScript();
-                            //newWindow();
-                            //newIFrame();
+                            switch($("[name=jsOptions]:checked").val()) {
+                                case "jsEval": 
+                                    evalTS();
+                                    break;
+                                case "jsScript":
+                                    newScript();
+                                    break;
+                                case "jsWindow": 
+                                    newWindow();
+                                    break;
+                                case "jsIFrame":
+                                    newIFrame();
+                                    break;
+                                case "jsWorker":
+                                    passJSToWorker();
+                                    break;
+                            };
                         }
                     );
                 }
@@ -114,6 +186,48 @@
                 var script = document.createElement("script");
                 script.textContent = $("#js").val();
                 iframe.contentDocument.body.appendChild(script);
+            }
+
+            function passTSToWorker() {
+                const worker = createNewWorker();
+
+                worker.postMessage({
+                    "type": "ts",
+                    "data": $("#ts").val()
+                });
+            }
+            
+            function passJSToWorker() {
+                const worker = createNewWorker();
+
+                worker.postMessage({
+                    "type": "js",
+                    "data": $("#js").val()
+                });
+            }
+
+            function createNewWorker() {
+                let myWorker = new Worker("worker.js");
+
+                myWorker.addEventListener('message', function(e) {
+                    switch (e.data.type) {
+                        case "ts":
+                            $("#js").val(e.data.data); 
+                            console.info("TS SUCCESS");
+                            break;
+
+                        case "js":
+                            console.info("JS SUCCESS");
+                            break;
+                    }
+                }, false);
+
+                setTimeout(() => {
+                    myWorker.terminate();
+                    myWorker = null;
+                }, 5000);
+
+                return myWorker;
             }
         </script>
 
