@@ -6,7 +6,7 @@ const webpack = require("webpack-stream");
 
 gulp.task(
     "clean:docs",
-    () => del(["../docs/index.js.map", "../docs/index.js"], {force: true})
+    () => del(["../docs/app.js.map", "../docs/app.js", "../docs/worker.js.map", "../docs/worker.js"], {force: true})
 );
 
 gulp.task(
@@ -14,7 +14,7 @@ gulp.task(
     ["clean:docs"],
     () => {
         const webpackConfig = require("./webpack.config.js");
-        webpackConfig.output.filename = "../docs/index.js";
+        webpackConfig.output.filename = "../docs/[name].js";
 
         return gulp
             .src("")
@@ -25,7 +25,7 @@ gulp.task(
 
 gulp.task(
     "clean:dist",
-    () => del(["../dist/index.js.map", "../dist/index.js"], {force: true})
+    () => del(["../dist/app.js.map", "../dist/app.js", "../dist/worker.js.map", "../dist/worker.js"], {force: true})
 );
 
 gulp.task(

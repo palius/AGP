@@ -2,7 +2,10 @@ const webpack = require("webpack");
 const path = require("path");
 
 module.exports = {
-	entry: "./src/index.ts",
+	entry: {
+		app: "./src/app/app.ts",
+		worker: "./src/worker/worker.ts"
+	},
 	module: {
 		rules: [{
 			test: /\.tsx?$/,
@@ -38,7 +41,7 @@ module.exports = {
 	output: {
 		library: "metal",
 		libraryTarget: "this",
-		filename: "../dist/index.js"
+		filename: "../dist/[name].js"
 	},
 	plugins: [
 		new webpack.optimize.ModuleConcatenationPlugin()

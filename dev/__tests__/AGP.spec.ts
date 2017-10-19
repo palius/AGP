@@ -1,4 +1,4 @@
-import APG from "../src/apg";
+import APG from "../src/app/apg";
 import { assert, expect } from "chai";
 
 describe("APG", function() {
