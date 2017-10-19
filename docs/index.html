@@ -6,10 +6,9 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Alius PlayGround</title>
         
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-            crossorigin="anonymous">
-        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
     </head>
     
     <body>
@@ -123,7 +122,18 @@
 
                     $("#tsCompiler").click(
                         () => {
-                            switch($("[name=tsOptions]:checked").val()) {
+                            $.ajax({
+                                method: "POST",
+                                url: "https://api-agp.wedeploy.io/ts",
+                                data: JSON.stringify({
+                                    "ts": $("#ts").val()
+                                }),
+                                contentType: "application/json"
+                            }).done(function( data ) {
+                                $("#js").val(JSON.parse(data).data);
+                            });
+                            
+                            /*switch($("[name=tsOptions]:checked").val()) {
                                 case "tsWindow": 
                                     if (!Transpiler) throw new Error("Transpiler not found!!");
                                     Transpiler("ts");
@@ -131,7 +141,7 @@
                                 case "tsWorker":
                                     passTSToWorker();
                                     break;
-                            };
+                            };*/
                         }
                     );
 
